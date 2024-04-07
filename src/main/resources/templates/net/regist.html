@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/net/regist" method="post">
+        <label>컨텐츠 제목 : </label><input type="text" name="conName"><br>
+        <label>카테고리 : </label><select name="categoryCode" id="categoryCode"></select><br>
+        <label>제작 국가 : </label><input type="text" name="nation"><br>
+        <label>연령 제한 : </label><input type="number" name="rating"><br>
+        <input type="submit" value="등록">
+    </form>
+
+    <script>
+        fetch('/net/category')
+            .then(res => res.json())
+            .then(data => {
+                const $categoryCode = document.getElementById('categoryCode');
+
+                for(let index in data) {
+                    const $option = document.createElement('option');
+                    $option.value = data[index].categoryCode;
+                    $option.textContent = data[index].categoryName;
+
+                    $categoryCode.appendChild($option);
+                }
+            });
+    </script>
+</body>
+</html>

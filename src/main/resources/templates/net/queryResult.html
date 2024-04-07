@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>카테고리코드</th>
+            <th>국가</th>
+            <th>연령</th>
+        </tr>
+        <tr th:each="con : ${ conList }">
+            <th th:text="${ con.conCode }"></th>
+            <th th:text="${ con.conName }"></th>
+            <th th:text="${ con.categoryCode }"></th>
+            <th th:text="${ con.nation }"></th>
+            <th th:text="${ con.rating }"></th>
+        </tr>
+    </table>
+
+</body>
+</html>

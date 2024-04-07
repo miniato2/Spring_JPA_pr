@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/net/modify" method="post">
+
+        <label>수정할 컨텐츠 번호 : </label>
+        <input type="number" name="conCode"><br>
+
+        <label>제목 : </label>
+        <input type="text" name="conName"><br>
+
+        <label>카테고리 : </label>
+        <select name="categoryCode" id="categoryCode"></select><br>
+
+        <label>국가 : </label>
+        <input type="text" name="nation"><br>
+
+        <label>연령 : </label>
+        <input type="text" name="rating"><br>
+
+        <input type="submit" value="수정">
+    </form>
+
+    <script>
+        fetch('/net/category')
+            .then(res => res.json())
+            .then(data => {
+                const $categoryCode = document.getElementById('categoryCode');
+
+                for(let index in data) {
+                    const $option = document.createElement('option');
+                    $option.value = data[index].categoryCode;
+                    $option.textContent = data[index].categoryName;
+
+                    $categoryCode.appendChild($option);
+                }
+            });
+    </script>
+</body>
+</html>
